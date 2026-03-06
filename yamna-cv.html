@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yamna Yahya — Senior Talent Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Instrument+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --parchment:    #F4EDE4;
+  --parchment-2:  #EDE4D8;
+  --parchment-3:  #E2D7C9;
+  --paper:        #FAF7F3;
+  --ink:          #1A1612;
+  --ink-2:        #3D3530;
+  --ink-3:        #6B5F56;
+  --ink-4:        #9E9188;
+  --ink-5:        #C4B9B0;
+  --terra:        #B86843;
+  --terra-2:      #D4845F;
+  --terra-ghost:  rgba(184,104,67,.07);
+  --ease-expo:    cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Instrument Sans',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+#cur{position:fixed;width:8px;height:8px;background:var(--terra);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);will-change:left,top}
+#cur-ring{position:fixed;width:32px;height:32px;border:1px solid var(--terra);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease-expo),height .3s var(--ease-expo),opacity .2s,border-color .2s;opacity:.4;will-change:left,top}
+#cur-ring.hov{width:50px;height:50px;opacity:.18;border-color:var(--terra-2)}
+
+/* PROGRESS */
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--terra);z-index:600;width:0;transition:width .08s linear}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3.5rem;transition:background .4s,box-shadow .4s,padding .3s}
+nav.scrolled{background:rgba(250,247,243,.93);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--parchment-3);padding:1rem 3.5rem}
+.nav-mark{font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:.7rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--terra);transition:width .3s var(--ease-expo)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--ink)}
+.nav-cta{font-size:.7rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);text-decoration:none;border:1px solid var(--terra);padding:.42rem 1.1rem;border-radius:2px;transition:background .2s,color .2s}
+.nav-cta:hover{background:var(--terra);color:#fff}
+
+/* UTILS */
+.wrap{max-width:1120px;margin:0 auto;padding:0 3.5rem}
+.sec{padding:7rem 0}
+.eyebrow{display:inline-flex;align-items:center;gap:.7rem;font-size:.68rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);margin-bottom:1.2rem}
+.eyebrow::before{content:'';width:18px;height:1px;background:var(--terra);flex-shrink:0}
+.display{font-family:'Playfair Display',serif;font-weight:400;line-height:1.04;letter-spacing:-.02em;color:var(--ink)}
+.display em{font-style:italic;color:var(--terra)}
+.body-copy{font-size:.95rem;color:var(--ink-3);line-height:1.8;font-weight:300}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease-expo),transform .75s var(--ease-expo)}
+.r.in{opacity:1;transform:none}
+.r.d1{transition-delay:.1s}.r.d2{transition-delay:.22s}.r.d3{transition-delay:.34s}.r.d4{transition-delay:.46s}.r.d5{transition-delay:.58s}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:5rem;position:relative;overflow:hidden;background:var(--parchment)}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(212,132,95,.06) 0%,transparent 65%),radial-gradient(ellipse 50% 70% at 5% 95%,rgba(184,104,67,.06) 0%,transparent 55%);pointer-events:none}
+.hero-lines{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-lines::before{content:'';position:absolute;top:0;left:55%;right:0;bottom:0;background-image:repeating-linear-gradient(0deg,var(--parchment-3) 0,var(--parchment-3) 1px,transparent 1px,transparent 72px);opacity:.3}
+.hero-status{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:1rem 3.5rem;border-bottom:1px solid var(--parchment-3);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);font-weight:400;margin-bottom:4.5rem;opacity:0;animation:fadeIn .6s .1s forwards}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#5C9E6B;display:inline-block;margin-right:.45rem;animation:blink 2.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-status-left{display:flex;gap:2rem}
+.hero-content{position:relative;z-index:1;padding:0 3.5rem}
+.hero-role{font-size:.7rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:1.4rem;opacity:0;animation:slideUp .7s .3s var(--ease-expo) forwards}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(4.5rem,11vw,10rem);font-weight:400;line-height:.92;letter-spacing:-.03em;color:var(--ink);opacity:0;animation:slideUp .95s .45s var(--ease-expo) forwards}
+.hero-name .it{font-style:italic;display:block}
+.hero-rule{width:100%;height:1px;background:var(--parchment-3);margin:2.5rem 0;opacity:0;animation:fadeIn .5s .95s forwards}
+.hero-footer{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:end;gap:2rem;opacity:0;animation:slideUp .7s 1.05s var(--ease-expo) forwards}
+.hero-statement{font-family:'DM Serif Display',serif;font-size:clamp(.95rem,1.55vw,1.2rem);font-style:italic;color:var(--ink-2);line-height:1.6;padding-left:1.1rem;border-left:2px solid var(--terra);grid-column:1/3}
+.hero-scroll{text-align:right;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-4);display:flex;flex-direction:column;align-items:flex-end;gap:.5rem}
+.scroll-bar{width:1px;height:36px;background:linear-gradient(to bottom,var(--terra),transparent);margin-left:auto;animation:growDown .9s 1.6s ease forwards;transform-origin:top;transform:scaleY(0)}
+@keyframes growDown{to{transform:scaleY(1)}}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(38px)}to{opacity:1;transform:none}}
+
+/* ── METRICS ── */
+#metrics{background:var(--ink)}
+.metrics-band{display:grid;grid-template-columns:repeat(5,1fr);border-left:1px solid #2A2520}
+.mc{padding:2.75rem 2.25rem;border-right:1px solid #2A2520;border-bottom:1px solid #2A2520;position:relative;overflow:hidden;transition:background .3s;cursor:default}
+.mc:hover{background:#1F1B17}
+.mc::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--terra);transition:width .5s var(--ease-expo)}
+.mc:hover::after{width:100%}
+.mc-num{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;color:var(--parchment);line-height:1;margin-bottom:.5rem;letter-spacing:-.02em}
+.mc-num .t{color:var(--terra)}
+.mc-lbl{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#5A4F46;font-weight:400;line-height:1.45}
+.mc-sub{font-size:.72rem;color:var(--terra-2);margin-top:.35rem;font-style:italic;font-family:'DM Serif Display',serif;opacity:.8}
+
+/* ── WORK ── */
+#work{background:var(--paper)}
+.sec-header{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:4.5rem;align-items:end}
+.timeline{border-top:1px solid var(--parchment-3)}
+.role-item{border-bottom:1px solid var(--parchment-3)}
+.role-trigger{display:grid;grid-template-columns:130px 1fr auto;gap:2rem;align-items:center;padding:2.2rem 0;cursor:pointer;transition:background .2s}
+.role-trigger:hover{background:var(--parchment);margin:0 -3.5rem;padding:2.2rem 3.5rem}
+.rp{font-size:.75rem;color:var(--ink-4);letter-spacing:.04em;font-weight:400}
+.rp strong{display:block;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.2rem;font-weight:400}
+.rco{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:400;margin-bottom:.3rem}
+.rtt{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;color:var(--ink);line-height:1.2}
+.rtag{font-size:.85rem;color:var(--ink-4);margin-top:.3rem;font-style:italic;font-family:'DM Serif Display',serif}
+.rbtn{width:34px;height:34px;border:1px solid var(--parchment-3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-4);flex-shrink:0;font-size:1.1rem;transition:border-color .2s,background .2s,color .2s,transform .35s var(--ease-expo)}
+.role-item.open .rbtn{transform:rotate(45deg);background:var(--terra);border-color:var(--terra);color:#fff}
+.role-body{max-height:0;overflow:hidden;transition:max-height .55s var(--ease-expo),opacity .4s;opacity:0}
+.role-item.open .role-body{max-height:700px;opacity:1}
+.rbi{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.5rem;padding:0 0 2.5rem}
+.rcl-lbl{font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:400;margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--parchment-3)}
+.rcl ul{list-style:none}
+.rcl li{font-size:.85rem;color:var(--ink-2);padding:.38rem 0;border-bottom:1px solid var(--parchment-3);font-weight:300;display:flex;gap:.6rem;align-items:baseline}
+.rcl li:last-child{border:none}
+.rcl li::before{content:'—';color:var(--ink-5);font-size:.68rem;flex-shrink:0}
+.pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.pill{font-size:.7rem;font-weight:400;padding:.28rem .85rem;border-radius:2rem;background:var(--terra-ghost);color:var(--terra);border:1px solid rgba(184,104,67,.18);letter-spacing:.02em}
+
+/* ── SYSTEMS ── */
+#systems{background:var(--parchment)}
+.sys-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:4.5rem}
+.sys-quote{font-family:'DM Serif Display',serif;font-size:1.35rem;font-style:italic;color:var(--ink-3);line-height:1.55;padding-left:1.4rem;border-left:2px solid var(--terra)}
+.sys-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--parchment-3);border:1px solid var(--parchment-3)}
+.sysc{background:var(--parchment);padding:2.4rem;cursor:pointer;position:relative;overflow:hidden;transition:background .3s;display:flex;flex-direction:column}
+.sysc:hover{background:var(--paper)}
+.sysc-glow{position:absolute;inset:0;background:linear-gradient(135deg,var(--terra-ghost),transparent);opacity:0;transition:opacity .4s}
+.sysc:hover .sysc-glow{opacity:1}
+.sys-n{font-family:'Playfair Display',serif;font-size:.82rem;font-style:italic;color:var(--ink-5);margin-bottom:1.8rem;position:relative}
+.sys-ic{font-size:1.3rem;margin-bottom:1.1rem;display:block;position:relative}
+.sys-nm{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;color:var(--ink);line-height:1.25;margin-bottom:.65rem;position:relative}
+.sys-ds{font-size:.83rem;color:var(--ink-3);line-height:1.7;flex:1;position:relative;font-weight:300}
+.sys-tgs{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.4rem;position:relative}
+.sys-tg{font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);border:1px solid var(--parchment-3);padding:.18rem .55rem;border-radius:2px}
+.sys-arrow{position:absolute;bottom:1.75rem;right:2rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5);display:flex;align-items:center;gap:.4rem;transition:color .2s,gap .2s}
+.sysc:hover .sys-arrow{color:var(--terra);gap:.7rem}
+
+/* ── SKILLS ── */
+#skills{background:var(--paper)}
+.sk-layout{display:grid;grid-template-columns:5fr 4fr;gap:5rem}
+.sk-glbl{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:400;margin-bottom:1.4rem}
+.sk-rows{display:flex;flex-direction:column;gap:.95rem;margin-bottom:2.5rem}
+.sk-entry{display:flex;flex-direction:column;gap:.32rem}
+.sk-meta{display:flex;justify-content:space-between;align-items:baseline}
+.sk-nm{font-size:.87rem;color:var(--ink-2);font-weight:400}
+.sk-lvl{font-size:.7rem;color:var(--ink-5);font-style:italic;font-family:'DM Serif Display',serif}
+.sk-track{height:1.5px;background:var(--parchment-3);border-radius:1px;overflow:hidden}
+.sk-bar{height:100%;background:linear-gradient(90deg,var(--terra),var(--terra-2));width:0;border-radius:1px;transition:width 1.4s var(--ease-expo)}
+.chips{display:flex;flex-wrap:wrap;gap:.48rem}
+.chip{font-size:.77rem;font-weight:300;padding:.35rem .95rem;border-radius:2rem;background:var(--parchment);border:1px solid var(--parchment-3);color:var(--ink-2);transition:background .2s,border-color .2s,color .2s;cursor:default}
+.chip:hover{background:var(--terra);border-color:var(--terra);color:#fff}
+
+/* ── EDUCATION ── */
+#education{background:var(--parchment)}
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--parchment-3);border:1px solid var(--parchment-3)}
+.edu-card{background:var(--parchment);padding:2rem;transition:background .25s}
+.edu-card:hover{background:var(--paper)}
+.edu-type{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:400;margin-bottom:.7rem}
+.edu-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:400;color:var(--ink);line-height:1.3;margin-bottom:.35rem}
+.edu-inst{font-size:.8rem;color:var(--ink-3);font-weight:300}
+.edu-det{font-size:.73rem;color:var(--ink-4);margin-top:.2rem}
+
+/* ── HUMAN ── */
+#human{background:var(--ink)}
+.human-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#2A2520;border:1px solid #2A2520}
+.hc{background:var(--ink);padding:3rem;transition:background .3s}
+.hc:hover{background:#1F1B17}
+.hc-lbl{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-2);font-weight:400;margin-bottom:.95rem}
+.hc-ttl{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;color:var(--parchment);line-height:1.3;margin-bottom:1.2rem}
+.hc-txt{font-size:.87rem;color:#7A6E65;line-height:1.8;font-weight:300}
+.hc-list{list-style:none;margin-top:.4rem}
+.hc-list li{font-size:.87rem;color:#7A6E65;padding:.48rem 0;border-bottom:1px solid #2A2520;display:flex;gap:.7rem;align-items:baseline;font-weight:300}
+.hc-list li:last-child{border:none}
+.hc-list li::before{content:'—';color:var(--terra);font-size:.72rem;flex-shrink:0}
+
+/* ── CTA BAND ── */
+#cta{background:var(--terra);padding:3.5rem 0}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem}
+.cta-lbl{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:400;margin-bottom:.4rem}
+.cta-hl{font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:#fff;line-height:1.2}
+.cta-btns{display:flex;gap:1.1rem}
+.cta-btn{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;font-weight:400;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.45);padding:.68rem 1.65rem;border-radius:2px;transition:background .2s,border-color .2s}
+.cta-btn:hover{background:rgba(255,255,255,.15);border-color:#fff}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);border-top:1px solid #2A2520;padding:2rem 3.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.f-name{font-family:'Playfair Display',serif;font-size:.9rem;color:#3D3530}
+.f-links{display:flex;gap:2rem;list-style:none}
+.f-links a{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#3D3530;text-decoration:none;transition:color .2s}
+.f-links a:hover{color:var(--terra)}
+
+/* ── DRAWER ── */
+.overlay{position:fixed;inset:0;background:rgba(26,22,18,.65);z-index:700;opacity:0;pointer-events:none;transition:opacity .4s;backdrop-filter:blur(3px)}
+.overlay.on{opacity:1;pointer-events:all}
+.drawer{position:fixed;top:0;right:0;width:min(660px,100vw);height:100vh;background:var(--paper);z-index:800;transform:translateX(100%);transition:transform .5s var(--ease-expo);overflow-y:auto;padding:3rem 3.5rem;display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.d-close{display:inline-flex;align-items:center;gap:.5rem;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-4);background:none;border:none;cursor:pointer;font-family:'Instrument Sans',sans-serif;transition:color .2s;margin-bottom:2.5rem;font-weight:400}
+.d-close:hover{color:var(--terra)}
+.d-ey{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);font-weight:400;margin-bottom:.7rem}
+.d-ttl{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:400;color:var(--ink);line-height:1.15;margin-bottom:2.5rem}
+.d-sec{margin-bottom:2.2rem}
+.d-sec-ttl{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-4);font-weight:400;margin-bottom:.8rem;padding-bottom:.45rem;border-bottom:1px solid var(--parchment-3)}
+.d-txt{font-size:.9rem;color:var(--ink-2);line-height:1.8;font-weight:300}
+.d-tools{display:flex;flex-wrap:wrap;gap:.48rem}
+.d-tool{font-size:.77rem;background:var(--parchment);border:1px solid var(--parchment-3);padding:.28rem .78rem;border-radius:2px;color:var(--ink-3)}
+.d-impact{background:var(--parchment);border-left:3px solid var(--terra);padding:1.2rem 1.5rem;font-family:'DM Serif Display',serif;font-size:1.15rem;font-style:italic;color:var(--ink-2);line-height:1.55}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}.nav-links{display:none}.wrap{padding:0 1.5rem}
+  .hero-content,.hero-status{padding:1rem 1.5rem}
+  .hero-footer{grid-template-columns:1fr}.hero-statement{grid-column:1}.hero-scroll{display:none}
+  .metrics-band{grid-template-columns:repeat(3,1fr)}
+  .sec-header{grid-template-columns:1fr;gap:1.5rem}
+  .role-trigger{grid-template-columns:1fr auto;gap:1rem}.rp{display:none}
+  .rbi{grid-template-columns:1fr;gap:1.5rem}
+  .sys-intro{grid-template-columns:1fr;gap:2rem}
+  .sys-grid{grid-template-columns:1fr}
+  .sk-layout{grid-template-columns:1fr;gap:2rem}
+  .edu-grid{grid-template-columns:1fr 1fr}
+  .human-grid{grid-template-columns:1fr}
+  .sys-arrow{display:none}
+  footer{padding:2rem 1.5rem}
+  nav.scrolled{padding:.9rem 1.5rem}
+}
+@media(max-width:600px){
+  .metrics-band{grid-template-columns:repeat(2,1fr)}
+  .edu-grid{grid-template-columns:1fr}
+  .hero-name{font-size:clamp(3.5rem,18vw,5.5rem)}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div id="progress"></div>
+
+<nav id="nav">
+  <a class="nav-mark" href="#hero">YY</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#systems">Systems</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#human">The Human</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:yamnayahya.y@gmail.com">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div style="position:relative;z-index:1">
+    <div class="hero-status">
+      <div class="hero-status-left">
+        <span><span class="status-dot"></span>Open to new roles</span>
+        <span>Karachi, Pakistan · MEA · Remote</span>
+      </div>
+      <span>Senior Talent Partner · 6+ years</span>
+    </div>
+    <div class="hero-content">
+      <div class="hero-role">Talent Systems Architect</div>
+      <h1 class="hero-name">Yamna<span class="it">Yahya</span></h1>
+      <div class="hero-rule"></div>
+      <div class="hero-footer">
+        <p class="hero-statement">I build the hiring engines that let startups scale teams quickly — without breaking quality, culture, or discipline.</p>
+        <div></div>
+        <div class="hero-scroll"><div class="scroll-bar"></div>Scroll</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section id="metrics">
+  <div class="metrics-band">
+    <div class="mc r d1">
+      <div class="mc-num"><span class="cnt" data-to="250" data-sfx="+">0</span></div>
+      <div class="mc-lbl">Strategic<br>Hires Delivered</div>
+      <div class="mc-sub">MEA, APAC & NA</div>
+    </div>
+    <div class="mc r d2">
+      <div class="mc-num"><span class="cnt" data-to="89" data-sfx="%">0</span></div>
+      <div class="mc-lbl">Offer Acceptance<br>Rate</div>
+      <div class="mc-sub">Sustained at scale</div>
+    </div>
+    <div class="mc r d3">
+      <div class="mc-num"><span class="cnt" data-to="23" data-sfx="%">0</span></div>
+      <div class="mc-lbl">Reduction in<br>Time-to-Hire</div>
+      <div class="mc-sub">35 → 27 days avg</div>
+    </div>
+    <div class="mc r d4">
+      <div class="mc-num"><span class="cnt" data-to="12" data-sfx="k+">0</span></div>
+      <div class="mc-lbl">Candidate Pipeline<br>Built</div>
+      <div class="mc-sub">65% conversion rate</div>
+    </div>
+    <div class="mc r d5">
+      <div class="mc-num">Top <span class="t">1%</span></div>
+      <div class="mc-lbl">LinkedIn<br>Sourcer</div>
+      <div class="mc-sub">4× Top 25% Recruiter</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="sec">
+  <div class="wrap">
+    <div class="sec-header">
+      <div>
+        <div class="eyebrow r">01 — Career Narrative</div>
+        <h2 class="display r d1" style="font-size:clamp(3rem,6vw,5.5rem)">The<br><em>Work</em></h2>
+      </div>
+      <div class="r d2"><p class="body-copy">Four roles. Each one a systems-building exercise at a different stage of company growth — from national workforce programs to YC hypergrowth to global tech scale-ups.</p></div>
+    </div>
+    <div class="timeline">
+
+      <div class="role-item r">
+        <div class="role-trigger" onclick="toggleRole(this.closest('.role-item'))">
+          <div class="rp"><strong>Current</strong>Dec '24 — Present</div>
+          <div><div class="rco">Beyond ONE (Contract)</div><div class="rtt">Senior Talent Partner (Tech)</div><div class="rtag">Founding Pakistan recruiter. Building the regional Tech leadership layer.</div></div>
+          <div class="rbtn">+</div>
+        </div>
+        <div class="role-body"><div class="rbi">
+          <div class="rcl"><div class="rcl-lbl">Context</div><ul><li>First recruiter owning Pakistan & MEA tech hiring at a global scale-up</li><li>Engineering, Product, Data & Cybersecurity across two regions</li><li>Direct partnership with founders and VPs on workforce strategy</li></ul></div>
+          <div class="rcl"><div class="rcl-lbl">Systems Built</div><ul><li>AI-enabled sourcing & TAM intelligence engine</li><li>Internal CRM (Replit) with passive nurture workflows</li><li>Executive TA dashboards via Power BI</li><li>Intake calibration & interviewer alignment redesign</li></ul></div>
+          <div class="rcl"><div class="rcl-lbl">Measured Impact</div><div class="pills" style="margin-top:.2rem"><span class="pill">40+ strategic hires</span><span class="pill">89% offer acceptance</span><span class="pill">23% faster hiring</span><span class="pill">+15% passive conversion</span><span class="pill">~2 days saved per search</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="role-item r d1">
+        <div class="role-trigger" onclick="toggleRole(this.closest('.role-item'))">
+          <div class="rp"><strong>Prior</strong>Apr '23 — Dec '24</div>
+          <div><div class="rco">Markaz Technologies · YC W22</div><div class="rtt">Talent Acquisition Lead</div><div class="rtag">Founding recruiter. Scaled 40 → 130+ people during hypergrowth.</div></div>
+          <div class="rbtn">+</div>
+        </div>
+        <div class="role-body"><div class="rbi">
+          <div class="rcl"><div class="rcl-lbl">Context</div><ul><li>First TA hire at a YC-backed B2B marketplace in hypergrowth</li><li>Built the recruitment and performance function from zero</li><li>Also led UAE marketplace go-to-market hiring strategy</li></ul></div>
+          <div class="rcl"><div class="rcl-lbl">Systems Built</div><ul><li>"Bar Raiser" hiring framework</li><li>TA analytics dashboard</li><li>360° feedback & OKR systems</li><li>Automated intake & stakeholder workflows</li></ul></div>
+          <div class="rcl"><div class="rcl-lbl">Measured Impact</div><div class="pills" style="margin-top:.2rem"><span class="pill">60+ cross-functional hires</span><span class="pill">90% offer acceptance</span><span class="pill">40 → 130+ employees</span><span class="pill">UAE: 28K+ signups</span><span class="pill">Every Day Hero Award</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="role-item r d2">
+        <div class="role-trigger" onclick="toggleRole(this.closest('.role-item'))">
+          <div class="rp"><strong>Prior</strong>Jan '22 — Mar '23</div>
+          <div><div class="rco">Motive (formerly KeepTruckin)</div><div class="rtt">Recruiter · Talent Sourcer II</div><div class="rtag">12,000+ pipeline across 20+ GTM & Tech roles in NA & Canada.</div></div>
+          <div class="rbtn">+</div>
+        </div>
+        <div class="role-body"><div class="rbi">
+          <div class="rcl"><div class="rcl-lbl">Context</div><ul><li>High-velocity technical sourcing at a logistics SaaS scale-up</li><li>GTM & Engineering roles across NA & Canada</li><li>Contributed to 120% company growth through GTM hiring</li></ul></div>
+          <div class="rcl"><div class="rcl-lbl">Systems Built</div><ul><li>12,000+ candidate pipeline</li><li>Boolean playbooks & market intelligence</li><li>Multi-channel outreach sequences</li><li>Candidate quality scoring framework</li></ul></div>
+          <div class="rcl"><div class="rcl-lbl">Measured Impact</div><div class="pills" style="margin-top:.2rem"><span class="pill">12,000+ pipeline</span><span class="pill">65% pipeline-to-interview</span><span class="pill">+40% candidate quality</span><span class="pill">LinkedIn Top 1% Sourcer</span><span class="pill">DWIT Value Award</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="role-item r d3">
+        <div class="role-trigger" onclick="toggleRole(this.closest('.role-item'))">
+          <div class="rp"><strong>Prior</strong>Feb '20 — Jan '22</div>
+          <div><div class="rco">MetaTalent.AI</div><div class="rtt">HR Business Partner</div><div class="rtag">Scaled team 200%. Full-cycle recruitment across UK & Pakistan.</div></div>
+          <div class="rbtn">+</div>
+        </div>
+        <div class="role-body"><div class="rbi">
+          <div class="rcl"><div class="rcl-lbl">Context</div><ul><li>Full-cycle recruitment & people programs across two countries</li><li>Managed a team of 3+ recruiters</li><li>Partnered with UK government on national workforce programs</li></ul></div>
+          <div class="rcl"><div class="rcl-lbl">Systems Built</div><ul><li>HR competency frameworks</li><li>DEI-focused talent strategy</li><li>Structured HR policies for compliance & enablement</li><li>Executive performance alignment</li></ul></div>
+          <div class="rcl"><div class="rcl-lbl">Measured Impact</div><div class="pills" style="margin-top:.2rem"><span class="pill">200% team scale</span><span class="pill">100+ UK gov. onboarding</span><span class="pill">DEI strategy rollout</span><span class="pill">Multi-region people ops</span></div></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEMS -->
+<section id="systems" class="sec">
+  <div class="wrap">
+    <div class="sys-intro">
+      <div>
+        <div class="eyebrow r">02 — Project Case Studies</div>
+        <h2 class="display r d1" style="font-size:clamp(3rem,6vw,5.5rem)">The<br><em>Systems</em></h2>
+      </div>
+      <p class="sys-quote r d2">"Hiring is product design for your team. Get the inputs wrong and no amount of culture work will fix the output."</p>
+    </div>
+    <div class="sys-grid r d1">
+
+      <div class="sysc" onclick="openDrawer('ai')">
+        <div class="sysc-glow"></div>
+        <div class="sys-n">01</div><span class="sys-ic">⚡</span>
+        <div class="sys-nm">AI-Enabled Sourcing Engine</div>
+        <p class="sys-ds">Multi-channel sourcing infrastructure combining AI tooling, TAM intelligence, and Boolean automation to scale pipeline without scaling headcount.</p>
+        <div class="sys-tgs"><span class="sys-tg">AI/ML</span><span class="sys-tg">Automation</span><span class="sys-tg">Pipeline</span></div>
+        <div class="sys-arrow">View case study →</div>
+      </div>
+
+      <div class="sysc" onclick="openDrawer('bar')">
+        <div class="sysc-glow"></div>
+        <div class="sys-n">02</div><span class="sys-ic">🎯</span>
+        <div class="sys-nm">Bar Raiser Hiring Framework</div>
+        <p class="sys-ds">Structured evaluation system maintaining hiring quality at 3× velocity — calibrated rubrics, designated Bar Raisers, rigorous debrief processes.</p>
+        <div class="sys-tgs"><span class="sys-tg">Process Design</span><span class="sys-tg">Quality</span></div>
+        <div class="sys-arrow">View case study →</div>
+      </div>
+
+      <div class="sysc" onclick="openDrawer('analytics')">
+        <div class="sysc-glow"></div>
+        <div class="sys-n">03</div><span class="sys-ic">📊</span>
+        <div class="sys-nm">TA Analytics Dashboards</div>
+        <p class="sys-ds">Real-time Power BI dashboards giving leadership visibility into funnel health, pipeline velocity, and hiring conversion across all active roles.</p>
+        <div class="sys-tgs"><span class="sys-tg">Power BI</span><span class="sys-tg">Data</span><span class="sys-tg">Ops</span></div>
+        <div class="sys-arrow">View case study →</div>
+      </div>
+
+      <div class="sysc" onclick="openDrawer('crm')">
+        <div class="sysc-glow"></div>
+        <div class="sys-n">04</div><span class="sys-ic">🌱</span>
+        <div class="sys-nm">Candidate Nurture CRM</div>
+        <p class="sys-ds">Built on Replit — a sequenced candidate relationship system that kept warm pipelines alive and reactivated strong candidates at the right moment.</p>
+        <div class="sys-tgs"><span class="sys-tg">CRM</span><span class="sys-tg">Nurture</span><span class="sys-tg">Replit</span></div>
+        <div class="sys-arrow">View case study →</div>
+      </div>
+
+      <div class="sysc" onclick="openDrawer('okr')">
+        <div class="sysc-glow"></div>
+        <div class="sys-n">05</div><span class="sys-ic">🔄</span>
+        <div class="sys-nm">360° Feedback + OKR System</div>
+        <p class="sys-ds">Continuous performance infrastructure connecting individual OKRs to team outcomes — replacing annual reviews with a living feedback loop.</p>
+        <div class="sys-tgs"><span class="sys-tg">People Ops</span><span class="sys-tg">OKRs</span><span class="sys-tg">Feedback</span></div>
+        <div class="sys-arrow">View case study →</div>
+      </div>
+
+      <div class="sysc" onclick="openDrawer('gtm')">
+        <div class="sysc-glow"></div>
+        <div class="sys-n">06</div><span class="sys-ic">🗺️</span>
+        <div class="sys-nm">UAE Marketplace GTM Hiring</div>
+        <p class="sys-ds">Built Markaz's UAE commercial team from zero — driving 28K+ signups and 1K+ active users in 2.5 months through targeted GTM hiring and funnel strategy.</p>
+        <div class="sys-tgs"><span class="sys-tg">GTM</span><span class="sys-tg">UAE</span><span class="sys-tg">Market Entry</span></div>
+        <div class="sys-arrow">View case study →</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="sec">
+  <div class="wrap">
+    <div class="sec-header">
+      <div>
+        <div class="eyebrow r">03 — Expertise</div>
+        <h2 class="display r d1" style="font-size:clamp(3rem,6vw,5.5rem)">Skills &<br><em>Craft</em></h2>
+      </div>
+      <div class="r d2"><p class="body-copy">A toolkit built across six years of hands-on hiring infrastructure work — from sourcing engines to executive dashboards to people programs.</p></div>
+    </div>
+    <div class="sk-layout">
+      <div class="r">
+        <div class="sk-glbl">Core Competencies</div>
+        <div class="sk-rows" id="sk-bars">
+          <div class="sk-entry"><div class="sk-meta"><span class="sk-nm">Talent Systems Architecture</span><span class="sk-lvl">Expert</span></div><div class="sk-track"><div class="sk-bar" data-w="95"></div></div></div>
+          <div class="sk-entry"><div class="sk-meta"><span class="sk-nm">AI-Enabled Sourcing</span><span class="sk-lvl">Expert</span></div><div class="sk-track"><div class="sk-bar" data-w="93"></div></div></div>
+          <div class="sk-entry"><div class="sk-meta"><span class="sk-nm">Structured Hiring Design</span><span class="sk-lvl">Expert</span></div><div class="sk-track"><div class="sk-bar" data-w="92"></div></div></div>
+          <div class="sk-entry"><div class="sk-meta"><span class="sk-nm">TA Analytics & Dashboards</span><span class="sk-lvl">Advanced</span></div><div class="sk-track"><div class="sk-bar" data-w="87"></div></div></div>
+          <div class="sk-entry"><div class="sk-meta"><span class="sk-nm">Workforce Planning</span><span class="sk-lvl">Advanced</span></div><div class="sk-track"><div class="sk-bar" data-w="84"></div></div></div>
+          <div class="sk-entry"><div class="sk-meta"><span class="sk-nm">Executive Stakeholder Management</span><span class="sk-lvl">Advanced</span></div><div class="sk-track"><div class="sk-bar" data-w="88"></div></div></div>
+          <div class="sk-entry"><div class="sk-meta"><span class="sk-nm">People Programs & OKRs</span><span class="sk-lvl">Advanced</span></div><div class="sk-track"><div class="sk-bar" data-w="82"></div></div></div>
+        </div>
+        <div class="sk-glbl">Hiring Domains</div>
+        <div class="chips"><span class="chip">Engineering</span><span class="chip">Product</span><span class="chip">Data Science</span><span class="chip">Cybersecurity</span><span class="chip">GTM / Sales</span><span class="chip">Design</span><span class="chip">Finance</span><span class="chip">People Ops</span><span class="chip">Executive</span></div>
+      </div>
+      <div class="r d2">
+        <div class="sk-glbl">Stack & Tools</div>
+        <div class="chips"><span class="chip">LinkedIn Recruiter</span><span class="chip">Greenhouse</span><span class="chip">Ashby</span><span class="chip">Gem</span><span class="chip">Power BI</span><span class="chip">Looker Studio</span><span class="chip">Workday</span><span class="chip">BrightHire</span><span class="chip">ChatGPT (Custom GPT)</span><span class="chip">Gemini</span><span class="chip">Claude</span><span class="chip">Notion</span><span class="chip">Confluence</span><span class="chip">Enboarder</span><span class="chip">SuccessFactors</span><span class="chip">Replit</span></div>
+        <div class="sk-glbl" style="margin-top:2.5rem">Regions</div>
+        <div class="chips"><span class="chip">🇦🇪 UAE / MEA</span><span class="chip">🇵🇰 Pakistan</span><span class="chip">🌏 APAC</span><span class="chip">🇺🇸 North America</span><span class="chip">🇨🇦 Canada</span><span class="chip">🇬🇧 United Kingdom</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="sec">
+  <div class="wrap">
+    <div class="eyebrow r">04 — Background</div>
+    <h2 class="display r d1" style="font-size:clamp(2.5rem,5vw,4.5rem);margin-bottom:3rem">Education &<br><em>Recognition</em></h2>
+    <div class="edu-grid r d2">
+      <div class="edu-card"><div class="edu-type">Education</div><div class="edu-name">Bachelor's in Psychology</div><div class="edu-inst">Institute of Professional Psychology, Bahria University</div><div class="edu-det">CGPA 3.82 · Dean's List · Merit Scholarship</div></div>
+      <div class="edu-card"><div class="edu-type">Award</div><div class="edu-name">Global Top 1% Sourcer</div><div class="edu-inst">LinkedIn Global Ranking</div><div class="edu-det">2022 / 2023</div></div>
+      <div class="edu-card"><div class="edu-type">Award</div><div class="edu-name">Top 25% LinkedIn Recruiter</div><div class="edu-inst">LinkedIn Global Ranking</div><div class="edu-det">2022 – 2025 · 4× Consecutive</div></div>
+      <div class="edu-card"><div class="edu-type">Company Award</div><div class="edu-name">DWIT Value Award</div><div class="edu-inst">Motive — "Do What It Takes"</div><div class="edu-det">Performance recognition</div></div>
+      <div class="edu-card"><div class="edu-type">Company Award</div><div class="edu-name">Every Day Hero Award</div><div class="edu-inst">Markaz Technologies</div><div class="edu-det">Impact recognition</div></div>
+      <div class="edu-card"><div class="edu-type">Early Career</div><div class="edu-name">Global Virtual Internship</div><div class="edu-inst">SIRM — UK Team Expansion</div><div class="edu-det">International early exposure</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HUMAN -->
+<section id="human" class="sec">
+  <div class="wrap">
+    <div class="eyebrow r" style="color:var(--terra-2)">05 — The Human</div>
+    <h2 class="display r d1" style="font-size:clamp(3rem,6vw,5.5rem);color:var(--parchment);margin-bottom:3rem">Beyond the<br><em>Resume</em></h2>
+    <div class="human-grid r d2">
+      <div class="hc"><div class="hc-lbl">What I value in teams</div><div class="hc-ttl">Quality over speed — but never one without the other</div><ul class="hc-list"><li>Intellectual honesty in hiring decisions</li><li>People who raise the bar just by being in the room</li><li>Speed that doesn't cut corners on culture</li><li>Data-informed but human-led decisions</li><li>Leaders who trust their talent partners</li></ul></div>
+      <div class="hc"><div class="hc-lbl">How I think about hiring</div><div class="hc-ttl">Hiring is product design for your team</div><p class="hc-txt">Every hire is a system input. Get the inputs wrong and no amount of culture work or OKRs will fix the output. I think about hiring the way a PM thinks about feature design — define the problem clearly, design the evaluation rigorously, measure everything.</p></div>
+      <div class="hc"><div class="hc-lbl">Working style</div><div class="hc-ttl">Operator mindset. Founder energy.</div><p class="hc-txt">I operate at the intersection of strategy and execution. Boardroom workforce planning in the morning, deep in LinkedIn Recruiter in the afternoon. I built my CRM in Replit. I build Custom GPTs. I stay hands-on because the craft matters.</p></div>
+      <div class="hc"><div class="hc-lbl">Outside the work</div><div class="hc-ttl">Curious about how organisations scale</div><p class="hc-txt">I follow the startup ecosystem closely, especially MENA. I mentor early-career HR professionals. I'm genuinely excited by AI's role in hiring — not as a replacement for judgment, but as infrastructure that amplifies it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-inner r">
+      <div><div class="cta-lbl">Currently open to</div><div class="cta-hl">Senior Talent Partner roles<br>at high-growth tech companies</div></div>
+      <div class="cta-btns"><a class="cta-btn" href="mailto:yamnayahya.y@gmail.com">Email Me</a><a class="cta-btn" href="https://linkedin.com" target="_blank">LinkedIn</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-name">Yamna Yahya</div>
+  <ul class="f-links"><li><a href="mailto:yamnayahya.y@gmail.com">Email</a></li><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="tel:+923313746532">+92 331 374 6532</a></li></ul>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <button class="d-close" onclick="closeDrawer()">← Close</button>
+  <div id="d-body"></div>
+</div>
+
+<script>
+/* CURSOR */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function loop(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.role-trigger,.sysc,.chip,.edu-card,.hc,.mc').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hov'));
+});
+
+/* PROGRESS */
+const prog=document.getElementById('progress');
+window.addEventListener('scroll',()=>{prog.style.width=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100+'%'});
+
+/* NAV */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>60);
+  const ids=['hero','work','systems','skills','human'];
+  let active='';
+  ids.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-220)active=id});
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+active));
+});
+
+/* REVEAL */
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+/* COUNTERS */
+function counter(el){
+  const to=+el.dataset.to,sfx=el.dataset.sfx||'',dur=2000,start=performance.now();
+  (function step(now){const t=Math.min((now-start)/dur,1),ease=1-Math.pow(1-t,4);el.textContent=Math.round(ease*to)+sfx;if(t<1)requestAnimationFrame(step)})(performance.now());
+}
+const cObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.cnt').forEach(counter);cObs.disconnect()}})},{threshold:.4});
+const mb=document.getElementById('metrics');if(mb)cObs.observe(mb);
+
+/* SKILL BARS */
+const bObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.sk-bar').forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+'%',i*75));bObs.disconnect()}})},{threshold:.2});
+const sb=document.getElementById('sk-bars');if(sb)bObs.observe(sb);
+
+/* ROLE TOGGLE */
+function toggleRole(item){const was=item.classList.contains('open');document.querySelectorAll('.role-item').forEach(i=>i.classList.remove('open'));if(!was)item.classList.add('open')}
+
+/* DRAWER */
+const DD={
+  ai:{ey:'System 01 · Sourcing Infrastructure',ttl:'AI-Enabled Sourcing Engine',
+    prob:'At scale, manual sourcing becomes a bottleneck. Traditional Boolean search couldn\'t keep pace with volume and quality requirements needed across Engineering, Product, Cybersecurity, and GTM simultaneously — especially across MEA and NA.',
+    design:'Built a multi-layered sourcing stack: AI-powered Boolean generation via custom GPTs, LinkedIn Recruiter automation sequences, TAM intelligence mapping per role, and passive pipeline triggers. Layered custom tracking to identify which channels produced the highest conversion per role type. Built the CRM backbone in Replit.',
+    tools:['LinkedIn Recruiter','Gem','ChatGPT Custom GPT','Claude','Replit','Power BI','Notion'],
+    impact:'12,000+ candidate pipeline built. Sourcing ramp time reduced ~2 days per role. Passive talent conversion up 15%. LinkedIn Global Top 1% Sourcer earned.'},
+  bar:{ey:'System 02 · Evaluation Framework',ttl:'Bar Raiser Hiring Framework',
+    prob:'As Markaz scaled from 40 to 130+ people, interview consistency broke down. Different interviewers applied different standards. Offer decisions became slow and subjective, and early mis-hires began to appear.',
+    design:'Designed a Bar Raiser programme adapted from Amazon\'s model for an early-stage startup. Includes: standardised competency matrices per level and function, calibrated scoring rubrics, designated Bar Raiser roles per panel who can block culture-diluting hires, and a structured forced-ranking debrief process.',
+    tools:['Greenhouse','Notion','BrightHire','Ashby','Google Docs'],
+    impact:'90% offer acceptance sustained through 3× hiring velocity. Quality-of-hire measurably improved. The framework remained in use after tenure ended.'},
+  analytics:{ey:'System 03 · Recruiting Operations',ttl:'TA Analytics Dashboards',
+    prob:'Leadership had no real-time hiring visibility. Decisions came from gut feel and retroactive spreadsheets. By the time a problem was visible in the data, it was already a 2–3 week blocker.',
+    design:'Built live dashboards in Power BI and Looker Studio tracking: pipeline velocity by stage, funnel conversion per role type, time-to-offer vs. target, source effectiveness, and interviewer throughput. Embedded weekly commentary into leadership syncs as a standing agenda item.',
+    tools:['Power BI','Looker Studio','Greenhouse','Ashby','Notion','Google Sheets'],
+    impact:'Time-to-hire reduced 23% in the quarter after adoption. Leadership shifted from monthly retrospectives to live visibility. Pipeline blockers identified 2–3 weeks earlier than before.'},
+  crm:{ey:'System 04 · Pipeline Management',ttl:'Candidate Nurture CRM',
+    prob:'Strong candidates who weren\'t ready to move were being lost. Every new role started cold, wasting weeks of sourcing time and budget. No institutional memory of past pipeline was retained.',
+    design:'Built a candidate relationship system using Replit as the backend layer. Warm pipelines segmented by function, seniority, and readiness signal. Automated but personalised outreach cadences timed to 30/60/90-day reactivation windows. Engagement scoring tracked across touchpoints.',
+    tools:['Replit','Gem','LinkedIn Recruiter','Notion','Google Sheets'],
+    impact:'Passive talent conversion increased 15%. Reactivated pipeline became a consistent placement source within 60 days of role opening. Cold-start time for senior technical roles significantly reduced.'},
+  okr:{ey:'System 05 · People Infrastructure',ttl:'360° Feedback + OKR System',
+    prob:'At Markaz during hypergrowth, performance was informal and inconsistent. Annual reviews were too infrequent for a company doubling every few months. There was no connection between individual goals and business outcomes.',
+    design:'Designed a continuous performance framework: quarterly OKR cycles tied to team and company objectives, 360° feedback embedded as a quarterly (not annual) ritual, manager calibration sessions for consistency, and Slack-integrated nudges to maintain cadence.',
+    tools:['Notion','Confluence','Google Workspace','Slack','Enboarder'],
+    impact:'OKR adoption reached 85%+ within two quarters. First 360° cycle completed with 90%+ participation. Managers reported stronger alignment conversations in subsequent hiring and performance decisions.'},
+  gtm:{ey:'System 06 · Market Entry Hiring',ttl:'UAE Marketplace GTM Hiring',
+    prob:'Markaz needed to build its full UAE commercial team from zero before a B2B marketplace launch — with no employer brand, no local network, and a compressed timeline.',
+    design:'Built a targeted UAE market hiring strategy from scratch: mapped the local commercial talent landscape, identified key competitor firms to target, designed a localised employer value proposition, and ran parallel hiring streams for Sales, Partnerships, Marketing, and Customer Success.',
+    tools:['LinkedIn Recruiter','Greenhouse','Notion','Gem','Looker Studio'],
+    impact:'Full UAE GTM team built within the launch window. Drove 28K+ signups and 1K+ active users within 2.5 months. Team structure and funnel strategy contributed directly to early commercial traction.'}
+};
+
+function openDrawer(k){
+  const d=DD[k];if(!d)return;
+  document.getElementById('d-body').innerHTML=`
+    <div class="d-ey">${d.ey}</div>
+    <div class="d-ttl">${d.ttl}</div>
+    <div class="d-sec"><div class="d-sec-ttl">The Problem</div><p class="d-txt">${d.prob}</p></div>
+    <div class="d-sec"><div class="d-sec-ttl">The System Design</div><p class="d-txt">${d.design}</p></div>
+    <div class="d-sec"><div class="d-sec-ttl">Tools Used</div><div class="d-tools">${d.tools.map(t=>`<span class="d-tool">${t}</span>`).join('')}</div></div>
+    <div class="d-sec"><div class="d-sec-ttl">Measured Impact</div><div class="d-impact">${d.impact}</div></div>`;
+  document.getElementById('overlay').classList.add('on');
+  document.getElementById('drawer').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeDrawer(){
+  document.getElementById('overlay').classList.remove('on');
+  document.getElementById('drawer').classList.remove('on');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
+</script>
+</body>
+</html>
